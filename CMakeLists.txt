@@ -15,6 +15,11 @@ if(hasParent)
   message(STATUS "Has a parent scope.")
 else()
   message(STATUS "Doesn't have a parent scope.")
+
+    if(CMAKE_INSTALL_PREFIX_INITIALIZED_TO_DEFAULT)
+        set(CMAKE_INSTALL_PREFIX "${CMAKE_CURRENT_BINARY_DIR}/MeshMagick" CACHE PATH "MeshMagick install prefix" FORCE)
+    endif (CMAKE_INSTALL_PREFIX_INITIALIZED_TO_DEFAULT)
+
     # include our custom cmake scripts
     set(CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/cmake)
     find_package(OGRE REQUIRED)
@@ -130,10 +135,10 @@ include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include ${OGRE_INCLUDE_DIRS})
 
 if(hasParent)
     ogitor_add_library(meshmagick_shared_lib SHARED ${MESHMAGICK_SOURCE} ${MESHMAGICK_HEADERS})
+    set(LIBRARY_OUTPUT_PATH  ../lib)
 else()
     add_library(meshmagick_shared_lib SHARED ${MESHMAGICK_SOURCE} ${MESHMAGICK_HEADERS})
 endif()
-set(LIBRARY_OUTPUT_PATH  ../lib)
 set_target_properties(meshmagick_shared_lib PROPERTIES
 	OUTPUT_NAME meshmagick
 	VERSION ${MESHMAGICK_MAJOR_VERSION}.${MESHMAGICK_MINOR_VERSION}.${MESHMAGICK_PATCH_VERSION}
@@ -158,53 +163,51 @@ target_link_libraries(meshmagick_bin meshmagick_shared_lib ${OGRE_LIBRARIES})
 
 #configure_file(${CMAKE_CURRENT_SOURCE_DIR}/meshmagick.pc.cmake ${CMAKE_CURRENT_BINARY_DIR}/meshmagick.pc)
 
-if(WIN32)
-	add_custom_command(TARGET meshmagick_shared_lib PRE_BUILD
-		COMMAND if not exist ..\\..\\RunPath\\bin mkdir ..\\..\\RunPath\\bin)
-	add_custom_command(TARGET meshmagick_shared_lib POST_BUILD
-		COMMAND copy \"$(TargetPath)\" ..\\..\\RunPath\\bin)
+if(hasParent)
+    if(MSVC_IDE)
+            add_custom_command(TARGET meshmagick_shared_lib PRE_BUILD
+                    COMMAND if not exist ..\\..\\RunPath\\bin mkdir ..\\..\\RunPath\\bin)
+            add_custom_command(TARGET meshmagick_shared_lib POST_BUILD
+                    COMMAND copy \"$(TargetPath)\" ..\\..\\RunPath\\bin)
 
-	install(TARGETS meshmagick_bin meshmagick_shared_lib
-		RUNTIME DESTINATION bin
-		CONFIGURATIONS Debug Release RelWithDebInfo MinSizeRel)
-endif(WIN32)
+            install(TARGETS meshmagick_bin meshmagick_shared_lib
+                    RUNTIME DESTINATION bin
+                    CONFIGURATIONS Debug Release RelWithDebInfo MinSizeRel)
+    endif(MSVC_IDE)
+else()
+    install(TARGETS meshmagick_bin meshmagick_shared_lib
+        RUNTIME DESTINATION bin
+        LIBRARY DESTINATION lib)
 
-#install(TARGETS meshmagick_bin meshmagick_shared_lib
-#	RUNTIME DESTINATION bin
-#	LIBRARY DESTINATION lib)
+    if(NOT WIN32)
+        install(FILES ${CMAKE_CURRENT_BINARY_DIR}/meshmagick.pc
+                                        DESTINATION ${CMAKE_INSTALL_PREFIX}/lib/pkgconfig)
+    endif(NOT WIN32)
 
-#if(NOT WIN32)
-#	install(FILES ${CMAKE_CURRENT_BINARY_DIR}/meshmagick.pc
-#					DESTINATION ${CMAKE_INSTALL_PREFIX}/lib/pkgconfig)
-#endif(NOT WIN32)
-
-#install(FILES
-#include/MeshMagick.h
-#include/MeshMagickPrerequisites.h
-#include/MmEditableBone.h
-#include/MmEditableMesh.h
-#include/MmEditableSkeleton.h
-#include/MmInfoToolFactory.h
-#include/MmInfoTool.h
-#include/MmMeshMergeToolFactory.h
-#include/MmMeshMergeTool.h
-#include/MmMeshUtils.h
-#include/MmOgreEnvironment.h
-#include/MmOptimiseToolFactory.h
-#include/MmOptimiseTool.h
-#include/MmOptionsParser.h
-#include/MmRenameToolFactory.h
-#include/MmRenameTool.h
-#include/MmStatefulMeshSerializer.h
-#include/MmStatefulSkeletonSerializer.h
-#include/MmToolFactory.h
-#include/MmTool.h
-#include/MmToolManager.h
-#include/MmToolUtils.h
-#include/MmTransformToolFactory.h
-#include/MmTransformTool.h
-#DESTINATION ${CMAKE_INSTALL_PREFIX}/include/meshmagick)
-
-#include(CPack)
-
-# vim: set sw=2 ts=2 noet:
+    install(FILES
+    include/MeshMagick.h
+    include/MeshMagickPrerequisites.h
+    include/MmEditableBone.h
+    include/MmEditableMesh.h
+    include/MmEditableSkeleton.h
+    include/MmInfoToolFactory.h
+    include/MmInfoTool.h
+    include/MmMeshMergeToolFactory.h
+    include/MmMeshMergeTool.h
+    include/MmMeshUtils.h
+    include/MmOgreEnvironment.h
+    include/MmOptimiseToolFactory.h
+    include/MmOptimiseTool.h
+    include/MmOptionsParser.h
+    include/MmRenameToolFactory.h
+    include/MmRenameTool.h
+    include/MmStatefulMeshSerializer.h
+    include/MmStatefulSkeletonSerializer.h
+    include/MmToolFactory.h
+    include/MmTool.h
+    include/MmToolManager.h
+    include/MmToolUtils.h
+    include/MmTransformToolFactory.h
+    include/MmTransformTool.h
+    DESTINATION ${CMAKE_INSTALL_PREFIX}/include/meshmagick)
+endif()
