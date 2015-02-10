@@ -4,3 +4,8 @@ It currently supports the three operations info, meshmerge, optimise, rename and
 For help call meshmagick with the -help command line option.
 
 MeshMagick is free open source software released under the LGPL license, which can be found in the COPYING.txt file.
+
+
+See [MeshMagic on Ogre Wiki](http://www.ogre3d.org/tikiwiki/tiki-index.php?page=MeshMagick)
+
+And [Forum topic](http://www.ogre3d.org/forums/viewtopic.php?f=5&t=32352&p=225217#p225217)
