@@ -7,8 +7,8 @@ cmake_policy(SET CMP0005 OLD)
 include(FeatureSummary)
 
 set(MESHMAGICK_MAJOR_VERSION 0)
-set(MESHMAGICK_MINOR_VERSION 5)
-set(MESHMAGICK_PATCH_VERSION 2)
+set(MESHMAGICK_MINOR_VERSION 7)
+set(MESHMAGICK_PATCH_VERSION 0)
 
 get_directory_property(hasParent PARENT_DIRECTORY)
 if(hasParent)
