@@ -101,7 +101,7 @@ namespace meshmagick
         }
         else
         {
-            rval = StringUtil::BLANK;
+            rval = Ogre::BLANKSTRING;
         }
         return rval;
     }

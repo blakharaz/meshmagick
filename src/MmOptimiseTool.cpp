@@ -27,6 +27,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #	include <Ogre/OgreStringConverter.h>
 #else
 #	include <OgreStringConverter.h>
+#   include <OgreMesh.h>
+#   include <OgreSubMesh.h>
 #endif
 
 #include <algorithm>
@@ -176,7 +178,7 @@ namespace meshmagick
 
 			if (optimiseGeometry())
 			{
-				if (mesh->getSkeletonName() != StringUtil::BLANK)
+                if (mesh->getSkeletonName() != Ogre::BLANKSTRING)
 				{
 					print("    fixing bone assignments...");
 					Mesh::BoneAssignmentIterator currentIt = mesh->getBoneAssignmentIterator();
@@ -194,9 +196,9 @@ namespace meshmagick
 				for (unsigned short i = 0; i < mesh->getNumSubMeshes(); ++i)
 				{
 					SubMesh* sm = mesh->getSubMesh(i);
-					if (mesh->getSkeletonName() != StringUtil::BLANK)
+                    if (mesh->getSkeletonName() != Ogre::BLANKSTRING)
 					{
-						print("    fixing bone assignments...");
+                        print("    fixing bone assignments...");
 						Mesh::BoneAssignmentIterator currentIt = sm->getBoneAssignmentIterator();
 						Mesh::VertexBoneAssignmentList newList =
 							getAdjustedBoneAssignments(currentIt);
@@ -230,7 +232,7 @@ namespace meshmagick
 				addIndexData(sm->indexData);
 				if (optimiseGeometry())
 				{
-					if (mesh->getSkeletonName() != StringUtil::BLANK)
+                    if (mesh->getSkeletonName() != Ogre::BLANKSTRING)
 					{
 						print("    fixing bone assignments...");
 						Mesh::BoneAssignmentIterator currentIt = sm->getBoneAssignmentIterator();

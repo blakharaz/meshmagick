@@ -69,7 +69,7 @@ namespace meshmagick
         /// given mesh.
         /// It first tries to find the skeleton file in the same directory as the mesh file.
         /// If not found there, it is searched in working dir,
-        /// if not found there, Ogre::StringUtil::BLANK is returned.
+        /// if not found there, Ogre::BLANKSTRING is returned.
         static Ogre::String getSkeletonFileName(const Ogre::MeshPtr, const Ogre::String& meshFileName);
 
     };

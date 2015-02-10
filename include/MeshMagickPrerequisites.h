@@ -33,6 +33,7 @@ namespace meshmagick
 #	include <Ogre/OgrePlatform.h>
 #else
 #	include <OgrePlatform.h>
+#	include <Ogre.h>
 #endif
 
 #if OGRE_PLATFORM == OGRE_PLATFORM_WIN32 && !MESHMAGICK_STANDALONE
