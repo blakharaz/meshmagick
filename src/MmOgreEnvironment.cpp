@@ -24,6 +24,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #include <OgreMeshManager.h>
 #include <OgreSkeletonManager.h>
 #include <OgreMaterialManager.h>
+#include "OgreLodStrategyManager.h"
 
 using namespace Ogre;
 
@@ -33,6 +34,7 @@ namespace meshmagick
 {
     OgreEnvironment::OgreEnvironment()
         : mLogMgr(NULL),
+          mLodMgr(NULL),
           mResourceGroupMgr(NULL),
           mMath(NULL),
           mMeshMgr(NULL),
@@ -55,6 +57,7 @@ namespace meshmagick
 			delete mMeshMgr;
 			delete mMath;
 			delete mResourceGroupMgr;
+            delete mLodMgr;
 			mLogMgr->destroyLog(mLog);
 			delete mLogMgr;
 		}
@@ -68,6 +71,7 @@ namespace meshmagick
 			mLog = mLogMgr->createLog("meshmagick.log", true, false, true);
 			mResourceGroupMgr = new ResourceGroupManager();
 			mMath = new Math();
+            mLodMgr = new LodStrategyManager();
 			mMeshMgr = new MeshManager();
 			mMeshMgr->setBoundsPaddingFactor(0.0f);
 			mMaterialMgr = new MaterialManager();

@@ -55,6 +55,7 @@ namespace meshmagick
 
     private:
         Ogre::LogManager* mLogMgr;
+        Ogre::LodStrategyManager* mLodMgr;
         Ogre::Log* mLog;
         Ogre::ResourceGroupManager* mResourceGroupMgr;
         Ogre::Math* mMath;
