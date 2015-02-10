@@ -28,6 +28,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #else
 #	include <OgreString.h>
 #	include <OgreAny.h>
+#   include <OgreCommon.h>
 #endif
 
 
@@ -78,7 +79,7 @@ namespace meshmagick
                          bool im = false,
                          bool am = false,
                          Ogre::Any dv = Ogre::Any(),
-                         const Ogre::String s = Ogre::StringUtil::BLANK)
+                         const Ogre::String s = Ogre::BLANKSTRING)
             : name(n),
               type(t),
               isMandatory(im),
@@ -143,7 +144,7 @@ namespace meshmagick
         static bool isOptionSet(const OptionList& options, const Ogre::String& name);
         /// Returns the String value of named option or def, if option not set.
         static Ogre::String getStringOption(const OptionList& options, const Ogre::String& name,
-            const Ogre::String& def=Ogre::StringUtil::BLANK);
+            const Ogre::String& def=Ogre::BLANKSTRING);
         /// Returns the display string of an OptionType enum value.
         static Ogre::String getTypeName(OptionType type);
     };
