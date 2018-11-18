@@ -143,7 +143,8 @@ set_target_properties(meshmagick_shared_lib PROPERTIES
 	OUTPUT_NAME meshmagick
 	VERSION ${MESHMAGICK_MAJOR_VERSION}.${MESHMAGICK_MINOR_VERSION}.${MESHMAGICK_PATCH_VERSION}
 	SOVERSION ${MESHMAGICK_MAJOR_VERSION}.${MESHMAGICK_MINOR_VERSION}
-	DEFINE_SYMBOL MESHMAGICK_EXPORTS)
+	DEFINE_SYMBOL MESHMAGICK_EXPORTS
+	CXX_STANDARD 11)
 target_link_libraries(meshmagick_shared_lib ${OGRE_LIBRARIES})
 
 if(NOT APPLE)
@@ -158,7 +159,8 @@ endif(NOT APPLE)
 
 set_target_properties(meshmagick_bin PROPERTIES
 	OUTPUT_NAME meshmagick
-	DEFINE_SYMBOL MESHMAGICK_IMPORTS)
+	DEFINE_SYMBOL MESHMAGICK_IMPORTS
+	CXX_STANDARD 11)
 target_link_libraries(meshmagick_bin meshmagick_shared_lib ${OGRE_LIBRARIES})
 
 configure_file(${CMAKE_CURRENT_SOURCE_DIR}/meshmagick.pc.cmake ${CMAKE_CURRENT_BINARY_DIR}/meshmagick.pc)
