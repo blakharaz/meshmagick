@@ -178,7 +178,7 @@ namespace meshmagick
 
 			if (optimiseGeometry())
 			{
-                if (mesh->getSkeletonName() != Ogre::BLANKSTRING)
+                if (mesh->getSkeletonName() != "")
 				{
 					print("    fixing bone assignments...");
 					Mesh::BoneAssignmentIterator currentIt = mesh->getBoneAssignmentIterator();
@@ -196,7 +196,7 @@ namespace meshmagick
 				for (unsigned short i = 0; i < mesh->getNumSubMeshes(); ++i)
 				{
 					SubMesh* sm = mesh->getSubMesh(i);
-                    if (mesh->getSkeletonName() != Ogre::BLANKSTRING)
+                    if (mesh->getSkeletonName() != "")
 					{
                         print("    fixing bone assignments...");
 						Mesh::BoneAssignmentIterator currentIt = sm->getBoneAssignmentIterator();
@@ -232,7 +232,7 @@ namespace meshmagick
 				addIndexData(sm->indexData);
 				if (optimiseGeometry())
 				{
-                    if (mesh->getSkeletonName() != Ogre::BLANKSTRING)
+                    if (mesh->getSkeletonName() != "")
 					{
 						print("    fixing bone assignments...");
 						Mesh::BoneAssignmentIterator currentIt = sm->getBoneAssignmentIterator();

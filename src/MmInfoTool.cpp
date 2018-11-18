@@ -496,7 +496,7 @@ namespace meshmagick
 	void InfoTool::printMeshInfo(const OptionList& toolOptions, const MeshInfo& info) const
 	{
 		const String list = OptionsUtil::getStringOption(toolOptions, "list");
-        if (list == Ogre::BLANKSTRING)
+        if (list == "")
 		{
 			reportMeshInfo(info);
 		}
@@ -513,7 +513,7 @@ namespace meshmagick
 	void InfoTool::printSkeletonInfo(const OptionList& toolOptions, const SkeletonInfo& info) const
 	{
 		const String list = OptionsUtil::getStringOption(toolOptions, "list");
-        if (list == Ogre::BLANKSTRING)
+        if (list == "")
 		{
 			reportSkeletonInfo(info);
 		}

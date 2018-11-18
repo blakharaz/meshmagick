@@ -79,7 +79,7 @@ namespace meshmagick
                          bool im = false,
                          bool am = false,
                          Ogre::Any dv = Ogre::Any(),
-                         const Ogre::String s = Ogre::BLANKSTRING)
+                         const Ogre::String s = "")
             : name(n),
               type(t),
               isMandatory(im),
@@ -144,7 +144,7 @@ namespace meshmagick
         static bool isOptionSet(const OptionList& options, const Ogre::String& name);
         /// Returns the String value of named option or def, if option not set.
         static Ogre::String getStringOption(const OptionList& options, const Ogre::String& name,
-            const Ogre::String& def=Ogre::BLANKSTRING);
+            const Ogre::String& def = "");
         /// Returns the display string of an OptionType enum value.
         static Ogre::String getTypeName(OptionType type);
     };

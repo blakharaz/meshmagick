@@ -101,7 +101,7 @@ namespace meshmagick
         }
         else
         {
-            rval = Ogre::BLANKSTRING;
+            rval = "";
         }
         return rval;
     }
