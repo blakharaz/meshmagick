@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.com/blakharaz/meshmagick.svg?branch=master)](https://travis-ci.org/blakharaz/meshmagick)
+
 # About MeshMagick
 MeshMagick is a manipulation tool for Ogre meshes (and skeletons).
 
