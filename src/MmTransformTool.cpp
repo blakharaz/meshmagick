@@ -33,6 +33,12 @@ using namespace Ogre;
 
 namespace meshmagick
 {
+#if OGRE_VERSION_MINOR >= 11 // Ogre 1.11+
+using AffineTransformationType = Ogre::Affine3;
+#else
+using AffineTransformationType = Ogre::Matrix4;
+#endif
+
     TransformTool::TransformTool()
         : mTransform(Matrix4::IDENTITY),
           mNormaliseNormals(false),
@@ -499,13 +505,13 @@ namespace meshmagick
             if (it->first == "scale")
             {
                 Vector3 scale = any_cast<Vector3>(it->second);
-                transform = Matrix4::getScale(scale) * transform;
+                transform = AffineTransformationType::getScale(scale) * transform;
                 print("Apply scaling " + StringConverter::toString(scale), V_HIGH);
             }
             else if (it->first == "translate")
             {
                 Vector3 translate = any_cast<Vector3>(it->second);
-                transform = Matrix4::getTrans(translate) * transform;
+                transform = AffineTransformationType::getTrans(translate) * transform;
                 print("Apply translation " + StringConverter::toString(translate), V_HIGH);
             }
             else if (it->first == "rotate")
@@ -541,7 +547,7 @@ namespace meshmagick
                     translate = Vector3(-aabb.getMaximum().x, 0, 0);
                 }
 
-                transform = Matrix4::getTrans(translate) * transform;
+                transform = AffineTransformationType::getTrans(translate) * transform;
             }
             else if (it->first == "yalign")
             {
@@ -570,7 +576,7 @@ namespace meshmagick
                     translate = Vector3(0, -aabb.getMaximum().y, 0);
                 }
 
-                transform = Matrix4::getTrans(translate) * transform;
+                transform = AffineTransformationType::getTrans(translate) * transform;
             }
             else if (it->first == "zalign")
             {
@@ -599,7 +605,7 @@ namespace meshmagick
                     translate = Vector3(0, 0, -aabb.getMaximum().z);
                 }
 
-                transform = Matrix4::getTrans(translate) * transform;
+                transform = AffineTransformationType::getTrans(translate) * transform;
                 print("Z-Alignment " + alignment + " - "
                     + StringConverter::toString(translate), V_HIGH);
             }
@@ -664,7 +670,7 @@ namespace meshmagick
                     }
                 }
 
-                transform = Matrix4::getScale(scale) * transform;
+                transform = AffineTransformationType::getScale(scale) * transform;
             }
 			else if (it->first == "axes")
             {
