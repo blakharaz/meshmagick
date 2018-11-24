@@ -1,4 +1,5 @@
-[![Build Status](https://travis-ci.com/blakharaz/meshmagick.svg?branch=master)](https://travis-ci.org/blakharaz/meshmagick)
+[![Build Status Travis CI](https://travis-ci.com/blakharaz/meshmagick.svg?branch=master)](https://travis-ci.org/blakharaz/meshmagick)
+[![Build Status Azure](https://dev.azure.com/teampantheon/meshmagick/_apis/build/status/blakharaz.meshmagick)](https://dev.azure.com/teampantheon/meshmagick/_build/latest?definitionId=1)
 
 # About MeshMagick
 MeshMagick is a manipulation tool for Ogre meshes (and skeletons).
