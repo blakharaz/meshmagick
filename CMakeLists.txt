@@ -16,10 +16,6 @@ if(hasParent)
 else()
   message(STATUS "Doesn't have a parent scope.")
 
-    #if(CMAKE_INSTALL_PREFIX_INITIALIZED_TO_DEFAULT)
-        set(CMAKE_INSTALL_PREFIX "${CMAKE_CURRENT_BINARY_DIR}/MeshMagick" CACHE PATH "MeshMagick install prefix" FORCE)
-    #endif (CMAKE_INSTALL_PREFIX_INITIALIZED_TO_DEFAULT)
-
     # include our custom cmake scripts
     set(CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/cmake)
     find_package(OGRE REQUIRED)
